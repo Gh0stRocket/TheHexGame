@@ -161,6 +161,7 @@ public class PrefabSpawner : MonoBehaviour {
 				} 
 			}
 		}
+		
 
 		private void genNumberPoints(){
 			GameObject go,prefab = Resources.Load<GameObject>("TxtMesh");
