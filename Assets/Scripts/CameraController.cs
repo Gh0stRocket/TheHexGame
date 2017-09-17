@@ -9,6 +9,12 @@ public class CameraController : MonoBehaviour {
 	public float minY = 10f;
 	public float maxY = 80f;
 
+	//17.09.17 - Camera Center Position - n
+	private Vector3 startPosition;
+	void Start () {
+		startPosition = transform.position;
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -44,5 +50,10 @@ public class CameraController : MonoBehaviour {
 
 		transform.position = pos;
 
+	}
+
+	//17.09.17 - Camera Center Position - n
+	public void ResetCameraPosition () {
+		transform.position = startPosition;
 	}
 }
