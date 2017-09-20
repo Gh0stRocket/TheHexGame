@@ -14,22 +14,18 @@ public class MeteorMovement : MonoBehaviour {
 	}
 		
 	void ReachesTarget () {			
-		//do something
-		Destroy (gameObject);
+		GameObject hexToDeactivate = mS.meteorTarget;
+		mS.meteorTarget.GetComponent<HexagonMovement> ().isDestroyed = true;
+		meteor.Die ();
 	}
 
 	void Update () {
-		Vector3 dir = mS.meteorTarget.transform.position - transform.position;
-		transform.Translate (dir.normalized * meteor.speed * Time.deltaTime);
-//		if (Vector3.Distance (transform.position, mS.meteorTarget.transform.position) <= 0.1) {
-//			ReachesTarget ();
-//		}
-	}
-
-	void OnTriggerEnter (Collider col){
-		GameObject hexToDeactivate = col.gameObject;
-		Debug.Log (col);
-		Destroy (gameObject);
-		col.GetComponent<HexagonMovement> ().isDestroyed = true;
+		if (mS.meteorTarget != null) {
+			Vector3 dir = mS.meteorTarget.transform.position - transform.position;
+			transform.Translate (dir.normalized * meteor.speed * Time.deltaTime);
+			if (Vector3.Distance (transform.position, mS.meteorTarget.transform.position) <= 0.1) {
+				ReachesTarget ();
+			}
+		}
 	}
 }

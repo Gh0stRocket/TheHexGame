@@ -22,6 +22,9 @@ public class MeteorSpawner : MonoBehaviour {
 
 	public int lockedHexCount;
 
+	//Index der Wave
+	private int waveID = 0;
+
 	void Start(){
 	}
 
@@ -46,6 +49,13 @@ public class MeteorSpawner : MonoBehaviour {
 //				filledArrayLength += 1;
 //			}
 //		}
+
+		//Exception
+		if (!IsObjectInArray () || meteorTargetArray.Length <= 0) {
+			Debug.Log ("ausstieg aus Find Target!");
+			return;
+		}
+
 		randomMeteorPicker = Random.Range (0, meteorTargetArray.Length);
 		Debug.Log ("Meteor looking for target");
 		meteorTarget = meteorTargetArray [randomMeteorPicker].gameObject;
@@ -55,15 +65,34 @@ public class MeteorSpawner : MonoBehaviour {
 	}
 
 	IEnumerator SpawnWave () {
-		for (int i = 0; i < 1; i++) {
-			SpawnEnemy (meteorPrefab, 1);
+		//scaling
+		waveID ++;
+		int scaleVal = (int) Mathf.Round (1 + waveID / 10);
+//		Debug.Log (scaleVal);
+		for (int i = 0; i < scaleVal; i++) {
+			SpawnMeteor (meteorPrefab, 1);
 			yield return new WaitForSeconds (timeBetweenMeteors);
 		}
 		yield return new WaitForSeconds (0.0f);
 	}
 
-	void SpawnEnemy (Transform enemy, float amount) {
-		Transform spawnedEnemy = Instantiate (enemy, meteorSpawnPoint, Quaternion.identity);
+	void SpawnMeteor (Transform meteor, float amount) {
+		//Exception
+		if (!IsObjectInArray () || meteorTargetArray.Length <= 0) {
+			Debug.Log ("ausstieg aus Spawn!");
+			return;
+		}
+		Transform spawnedEnemy = Instantiate (meteor, meteorSpawnPoint, Quaternion.identity);
+	}
+
+	//19.09.17 - Exception - n
+	public bool IsObjectInArray () {
+		for (int i = 0; i < meteorTargetArray.Length; i++) {
+			if (meteorTargetArray [i] != null) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	void Update () {

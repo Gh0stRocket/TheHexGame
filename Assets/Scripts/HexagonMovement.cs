@@ -14,7 +14,10 @@ public class HexagonMovement : MonoBehaviour {
 	public bool isLocked = false;
 	public bool isDestroyed = false;
 
+	private Hexagon hexa;
+
 	void Start () {
+		hexa = GetComponent<Hexagon> ();
 		startPosition = transform.position;
 		target = GameObject.Find ("Hexagon0|0");
 		Vector3 dir = target.transform.position - transform.position;
@@ -30,6 +33,7 @@ public class HexagonMovement : MonoBehaviour {
 			transform.Translate (dir.normalized * dockingSpeed * Time.deltaTime);
 		} else {
 			isLocked = true;
+			hexa.isLockedExtra = true;
 			speed = 0f;
 			transform.position = startPosition;
 		}

@@ -11,6 +11,8 @@ public class BuildManager : MonoBehaviour {
 	[HideInInspector]
 	public bool mineSelected;
 	[HideInInspector]
+	public bool defenceSelected;
+	[HideInInspector]
 	public GameObject buildingToBuild;
 	[HideInInspector]
 	public Hexagon hexagonToBuildOn;
@@ -33,8 +35,10 @@ public class BuildManager : MonoBehaviour {
 //		}
 	}
 	public void SelectDefenceToBuild () {
+		Debug.Log ("selected def");
 		ClearBuildingSelection ();
-		buildingToBuild = defence;
+		defenceSelected = true;
+//		buildingToBuild = defence;
 //		if (mouseController != null) {
 //			mouseController.SetCursorTextureToDefence ();
 //		}
@@ -43,13 +47,15 @@ public class BuildManager : MonoBehaviour {
 	public void ClearBuildingSelection () {
 		buildingToBuild = null;
 		mineSelected = false;
+		defenceSelected = false;
 	}
 
 	//17.09.17 - Reworked Buildingfunction - n
 	public void BuildBuilding (int biomeID) {
 		if (mineSelected) {
 			buildingToBuild = hexagonToBuildOn.mineBuilding;
-		} else {
+		}
+		if (defenceSelected) {
 			buildingToBuild = hexagonToBuildOn.defenceBuilding;
 		}
 		Building b = buildingToBuild.GetComponent<Building> ();

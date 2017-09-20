@@ -16,7 +16,7 @@ public class Building : MonoBehaviour {
 	public Hexagon hexagonParent;
 
 	public bool CanPay () {
-		if (t1aCost <= PlayerResources.t1aAmount && t1bCost <= PlayerResources.t1bAmount && t1bCost <= PlayerResources.t1bAmount) {
+		if (t1aCost <= PlayerResources.t1aAmount && t1bCost <= PlayerResources.t1bAmount && t1cCost <= PlayerResources.t1cAmount) {
 			return true;
 		} else {
 			return false;

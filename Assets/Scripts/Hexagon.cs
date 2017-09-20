@@ -20,6 +20,8 @@ public class Hexagon : MonoBehaviour {
 	public GameObject defenceBuilding;
 	public GameObject mineBuilding;
 
+	public bool isLockedExtra = false;
+
 	void Start () {
 //		positionToPlace = gameObject;
 		biome = GetComponent<Biome> ();
@@ -32,6 +34,10 @@ public class Hexagon : MonoBehaviour {
 		
 	void OnMouseDown () {
 		if (EventSystem.current.IsPointerOverGameObject ()) {
+			return;
+		}
+		//Damit man ihn beim Anflug nicht bebauen kann
+		if (!isLockedExtra) {
 			return;
 		}
 		buildManager.hexagonToBuildOn = this;

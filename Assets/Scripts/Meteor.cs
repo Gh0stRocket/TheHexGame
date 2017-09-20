@@ -18,24 +18,17 @@ public class Meteor : MonoBehaviour {
 		speed = startSpeed;
 		hitPoints = startHitPoints;
 	}
-
-	void Update(){
+		
+	public void SubHitPoints (float amount) {
+		hitPoints -= amount;
 		if (hitPoints <= 0) {
-//			Die ();
-			Destroy(gameObject);
+			Die ();
 		}
 	}
 
-//	public void SubHitPoints (float amount) {
-//		hitPoints -= amount;
-//		if (hitPoints <= 0) {
-//			Die ();
-//		}
-//	}
-
-	void Die () {
+	public void Die () {
 		GameObject effect = (GameObject) Instantiate (deathEffect, transform.position, Quaternion.identity);
-		Destroy (effect, 2.0f);
+		Destroy (effect, 1.1f);
 		Destroy (gameObject);
 	}
 }

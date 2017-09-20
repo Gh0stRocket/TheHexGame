@@ -76,6 +76,9 @@ public class PrefabSpawner : MonoBehaviour {
 			gi.name = "Hexagon" + gi.transform.position.x + "|" + gi.transform.position.z;
 			gi.transform.parent = this.transform;
 
+//			//fuer die richtige listung im array
+//			gi.GetComponent<HexaPrefabSetter> ().spawnID = 1;
+
 			HexList.Add(gi);
 			return gi;
 		}

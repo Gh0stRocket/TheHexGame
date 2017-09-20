@@ -12,11 +12,13 @@ public class HexaCollection : MonoBehaviour {
 
 	public float pullTimer = 1f;
 
+	//hilfe um nach Start() auszufuehren
+	private bool firstRun = true;
+
 	// Use this for initialization
 	void Start () {
 		hexCount = hexSpawner.transform.childCount;
 		hexArray = new Transform[hexCount];
-
 		for (int i = 0; i < hexArray.Length; i++) {
 			hexArray [i] = hexSpawner.transform.GetChild (i);
 		}
@@ -27,11 +29,22 @@ public class HexaCollection : MonoBehaviour {
 		pullTimer -= Time.deltaTime;
 
 		if (pullTimer <= 0) {
+
+//			//Damit es nach Start ausgeführt wird
+//			if (firstRun) {
+//				hexCount = hexSpawner.transform.childCount;
+//				hexArray = new Transform[hexCount];
+//				for (int i = 0; i < hexArray.Length; i++) {
+//					hexArray [i] = hexSpawner.transform.GetChild (i);
+//				}
+//				firstRun = false;
+//			}
 			
-			for( int activeHex = 0; hexArray.Length > activeHex; activeHex++){
+			for( int activeHex = 0; activeHex < hexArray.Length ; activeHex++){
 				if (hexArray [activeHex].GetComponent<HexagonMovement> ().speed == 0f && !hexArray [activeHex].GetComponent<HexagonMovement> ().isLocked) {
 					hexArray [activeHex].GetComponent<HexagonMovement> ().speed = hexSpeed;
-					pullTimer = 1f;
+
+					pullTimer = 10f;
 					return;
 				} 
 			}

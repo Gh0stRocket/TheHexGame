@@ -54,13 +54,19 @@ public class PlayerResources : MonoBehaviour {
 		switch (resourceID)
 		{
 		case 1:
-			t1aAmount -= amount;
+			if (t1aAmount - amount >= 0) {
+				t1aAmount -= amount;
+			}
 			break;
 		case 2:
-			t1bAmount -= amount;
+			if (t1bAmount - amount >= 0) {
+				t1bAmount -= amount;
+			}
 			break;
 		case 3:
-			t1cAmount -= amount;
+			if (t1cAmount - amount >= 0) {
+				t1cAmount -= amount;
+			}
 			break;
 		default:
 			break;
@@ -69,15 +75,20 @@ public class PlayerResources : MonoBehaviour {
 	}
 
 	public static void UpdateResourceText () {
-		_t1aAmountText.text = "Iron " + Mathf.Round(t1aAmount);
-		_t1bAmountText.text = "Oil " + Mathf.Round(t1bAmount);
-		_t1cAmountText.text = "Glas " + Mathf.Round(t1cAmount);
+		_t1aAmountText.text = "Iron " + Mathf.Round(t1aAmount) + " ";
+		_t1bAmountText.text = "Oil " + Mathf.Round(t1bAmount) + " ";
+		_t1cAmountText.text = "Glas " + Mathf.Round(t1cAmount) + " ";
 	}
 
 	void Update () {
 		//Dauerhafter Energiebedarf (2) 
-		DecreaseAmountOfResource (2 * Time.deltaTime, 1);
-		DecreaseAmountOfResource (2 * Time.deltaTime, 2);
-		DecreaseAmountOfResource (2 * Time.deltaTime, 3);
+		DecreaseAmountOfResource (0.5f * Time.deltaTime, 1);
+		DecreaseAmountOfResource (0.5f * Time.deltaTime, 2);
+		DecreaseAmountOfResource (0.5f * Time.deltaTime, 3);
+
+		//Vorerst GameExit
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Application.Quit ();
+		}
 	}
 }
