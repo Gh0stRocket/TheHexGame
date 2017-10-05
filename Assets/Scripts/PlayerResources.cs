@@ -75,9 +75,9 @@ public class PlayerResources : MonoBehaviour {
 	}
 
 	public static void UpdateResourceText () {
-		_t1aAmountText.text = "Iron " + Mathf.Round(t1aAmount) + " ";
-		_t1bAmountText.text = "Oil " + Mathf.Round(t1bAmount) + " ";
-		_t1cAmountText.text = "Glas " + Mathf.Round(t1cAmount) + " ";
+		_t1aAmountText.text = "" + Mathf.Round(t1aAmount);
+		_t1bAmountText.text = "" + Mathf.Round(t1bAmount);
+		_t1cAmountText.text = "" + Mathf.Round(t1cAmount);
 	}
 
 	void Update () {

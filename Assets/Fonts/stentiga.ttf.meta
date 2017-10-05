@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 828ece1a95e357a44a31afbdc96d1a5e
+timeCreated: 1506276593
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Stentiga
+  fontNames:
+  - Stentiga
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -44,7 +44,9 @@ public class HexaCollection : MonoBehaviour {
 				if (hexArray [activeHex].GetComponent<HexagonMovement> ().speed == 0f && !hexArray [activeHex].GetComponent<HexagonMovement> ().isLocked) {
 					hexArray [activeHex].GetComponent<HexagonMovement> ().speed = hexSpeed;
 
-					pullTimer = 10f;
+					//eventuel render aktivieren
+
+					pullTimer = 20f;
 					return;
 				} 
 			}

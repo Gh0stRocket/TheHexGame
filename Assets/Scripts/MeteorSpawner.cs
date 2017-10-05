@@ -25,9 +25,6 @@ public class MeteorSpawner : MonoBehaviour {
 	//Index der Wave
 	private int waveID = 0;
 
-	void Start(){
-	}
-
 	void FindTargetHex() {
 		for (int i = 0; hexC.hexArray.Length > i; i++) {
 			if (hexC.hexArray [i].GetComponent<HexagonMovement> ().isLocked) {
@@ -55,7 +52,6 @@ public class MeteorSpawner : MonoBehaviour {
 			Debug.Log ("ausstieg aus Find Target!");
 			return;
 		}
-
 		randomMeteorPicker = Random.Range (0, meteorTargetArray.Length);
 		Debug.Log ("Meteor looking for target");
 		meteorTarget = meteorTargetArray [randomMeteorPicker].gameObject;
@@ -70,6 +66,7 @@ public class MeteorSpawner : MonoBehaviour {
 		int scaleVal = (int) Mathf.Round (1 + waveID / 10);
 //		Debug.Log (scaleVal);
 		for (int i = 0; i < scaleVal; i++) {
+			FindTargetHex ();
 			SpawnMeteor (meteorPrefab, 1);
 			yield return new WaitForSeconds (timeBetweenMeteors);
 		}
@@ -108,7 +105,7 @@ public class MeteorSpawner : MonoBehaviour {
 //		}
 		
 		if (meteorTimer <= 0f) {
-			FindTargetHex ();
+			
 			StartCoroutine (SpawnWave ());
 			meteorTimer = timeBetweenWaves;
 		}

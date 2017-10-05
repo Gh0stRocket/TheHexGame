@@ -59,7 +59,8 @@ public class Defence : Building {
 					
 		Vector3 dir = target.position - partToRotate.position;
 		Quaternion lookRotation = Quaternion.LookRotation (dir);
-		Vector3 rotation = Quaternion.Lerp (partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+
+		Vector3 rotation = Quaternion.Slerp (partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
 		partToRotate.rotation = Quaternion.Euler (0f, rotation.y, 0f);
 		wheel1.rotation = Quaternion.Euler (rotation.y, rotation.y, rotation.z);
 		wheel2.rotation = Quaternion.Euler (-rotation.y, rotation.y, rotation.z);

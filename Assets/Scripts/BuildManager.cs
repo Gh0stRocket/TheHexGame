@@ -58,6 +58,9 @@ public class BuildManager : MonoBehaviour {
 		if (defenceSelected) {
 			buildingToBuild = hexagonToBuildOn.defenceBuilding;
 		}
+		if (buildingToBuild == null) {
+			return;
+		}
 		Building b = buildingToBuild.GetComponent<Building> ();
 		if (b.CanPay ()) {
 			PlayerResources.DecreaseAmountOfResource (b.t1aCost, 1);
